@@ -1,4 +1,5 @@
 import React from 'react';
+import { Link } from 'react-router-dom';
 import './styles.css';
 
 import Container from '../container';
@@ -8,7 +9,7 @@ export default () => {
         <div className="header">
             <Container>
                 <div className="logo">
-                    spendlist
+                    <Link to="/">spendlist</Link>
                 </div>
 
                 <div className="leftmenu">
@@ -17,7 +18,7 @@ export default () => {
                 </div>
 
                 <div className="rightmenu">
-                    <a href="/expenses">login</a>
+                    <Link to="/login">login</Link>
                     <a href="/expenses">create account</a>
                 </div>
 
