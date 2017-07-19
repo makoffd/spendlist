@@ -1,0 +1,20 @@
+.fieldgroup {
+    padding-left: 140px;
+    position: relative;
+    margin-bottom: 10px;
+}
+.fieldgroup:last-child {
+    margin-bottom: 0;
+}
+.fieldgroup label {
+    position: absolute;
+    left: 10px;
+    top: 50%;
+    margin-top: -10px;
+}
+.fieldgroup input {
+    height: 34px;
+    padding: 6px 12px;
+    font-size: 14px;
+    width: 50%;
+}

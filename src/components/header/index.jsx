@@ -1,37 +1,24 @@
 import React from 'react';
-import { Link } from 'react-router-dom';
+import { NavLink } from 'react-router-dom';
 import './styles.css';
-
-import Container from '../container';
 
 export default () => {
     return (
-        <div className="header">
-            <Container>
-                <div className="logo">
-                    <Link to="/">spendlist</Link>
-                </div>
-
-                <div className="leftmenu">
-                    <a href="/expenses">expenses</a>
-                    <a href="/expenses">contact</a>
-                </div>
-
-                <div className="rightmenu">
-                    <Link to="/login">login</Link>
-                    <a href="/expenses">create account</a>
-                </div>
-
-                <div className="accmanagement">
-                    {
-                    //  user.profile.picture
-                    //  img(src=user.gravatar(60))
-                    //  user.profile.name || user.email || user.id
-                    }
-                    <a href="/expenses">My Account</a>
-                    <a href='/logout'> Logout</a>
-                </div>
-            </Container>
-        </div>
+        <header className="mdl-layout__header mdl-layout__header--scroll mdl-color--primary">
+            <div className="mdl-layout--large-screen-only mdl-layout__header-row">
+            </div>
+            <div className="mdl-layout--large-screen-only mdl-layout__header-row">
+              <h3>SpendList</h3>
+            </div>
+            <div className="mdl-layout--large-screen-only mdl-layout__header-row">
+            </div>
+            <div className="mdl-layout__tab-bar mdl-js-ripple-effect mdl-color--primary-dark">
+                <NavLink exact to="/" className="mdl-layout__tab" activeClassName="is-active">Overview</NavLink>
+                <NavLink to="/expenses" className="mdl-layout__tab" activeClassName="is-active">Expences</NavLink>
+                <NavLink to="/contact" className="mdl-layout__tab" activeClassName="is-active">Contact</NavLink>
+                <NavLink to="/login" className="mdl-layout__tab mdl-layout__tab--right" activeClassName="is-active">Login</NavLink>
+                <NavLink to="/signup" className="mdl-layout__tab" activeClassName="is-active">Signup</NavLink>
+            </div>
+        </header>
     )
 }

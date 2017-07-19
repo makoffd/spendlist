@@ -1,12 +1,16 @@
 import React from 'react';
-import Container from '../container';
+import Section from '../section';
 
 import './styles.css';
 
 export default props => (
-    <Container>
-        <h1>Contact</h1>
-        <hr/>
-        contact page
-    </Container>
+    <div className="mdl-layout__tab-panel">
+        <Section>
+            <div className="mdl-card__supporting-text">
+                <h1>Contact</h1>
+                <hr/>
+                contact page
+            </div>
+        </Section>
+    </div>
 );
