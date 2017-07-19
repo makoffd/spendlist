@@ -1,6 +1,5 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
-import { Router, Route, Switch } from 'react-router';
 import { createStore, combineReducers, applyMiddleware } from 'redux'
 import { Provider } from 'react-redux'
 
@@ -9,9 +8,6 @@ import createHistory from 'history/createBrowserHistory'
 import { ConnectedRouter, routerReducer, routerMiddleware, push } from 'react-router-redux'
 
 import App from './components/app';
-import Home from './components/home';
-import Login from './components/login';
-import Contact from './components/contact';
 import registerServiceWorker from './registerServiceWorker';
 
 import reducers from './reducers' // Or wherever you keep your reducers
@@ -37,11 +33,7 @@ ReactDOM.render(
     <Provider store={store}>
     { /* ConnectedRouter will use the store from Provider automatically */ }
         <ConnectedRouter history={history}>
-            <App>
-                <Route exact path="/" component={Home}/>
-                <Route path="/login" component={Login}/>
-                <Route path="/contact" component={Contact}/>
-            </App>
+            <App/>
         </ConnectedRouter>
       </Provider>,
     document.getElementById('root')

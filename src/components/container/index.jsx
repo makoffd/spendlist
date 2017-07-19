@@ -3,8 +3,8 @@ import './styles.css';
 
 export default (props) => {
     return (
-        <div className="container">
+        <main className="mdl-layout--fixed-header has-tabs is-upgraded">
             { props.children }
-        </div>
+        </main>
     )
 }

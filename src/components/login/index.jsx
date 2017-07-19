@@ -1,14 +1,18 @@
-import React from 'react';
-import Container from '../container';
+import { connect } from 'react-redux'
+import { login } from '../../actions'
+import Component from './component.jsx'
 
-import './styles.css';
+const mapDispatchToProps = (dispatch, ownProps) => {
+  return {
+    onSubmitClick: () => {
+      dispatch(login(ownProps.filter))
+    }
+  }
+}
 
-export default props => (
-    <Container>
-        <h1>Login</h1>
-        <hr/>
-        <input placeholder="Username" />
-        <input placeholder="password" />
-        <button>{'asdfasdff'}</button>
-    </Container>
-);
+const Login = connect(
+  null,
+  mapDispatchToProps
+)(Component)
+
+export default Login;
