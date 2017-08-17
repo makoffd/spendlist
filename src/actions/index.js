@@ -1,6 +1,20 @@
-export function login(payload) {
+export function loginRequest(payload) {
     return {
-        type: 'LOGIN',
+        type: 'LOGIN_REQUEST',
+        payload
+    }
+}
+
+export function loginResponse(payload) {
+    return {
+        type: 'LOGIN_RESPONSE',
+        payload
+    }
+}
+
+export function loginFailed(payload) {
+    return {
+        type: 'LOGIN_FAILED',
         payload
     }
 }

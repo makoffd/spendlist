@@ -1,9 +1,19 @@
+const base = 'http://localhost:3001';
 const API = {
-    login: 'login'
+    login: '/api/login'
 }
 
 export default {
-    login(params) {
-        fetch(API.login, params)
+    async login(params) {
+        const data = await fetch(
+            base + API.login,
+            {
+                method: 'POST',
+                mode: 'cors',
+                body: JSON.stringify(params)
+            }
+        );
+
+        return data;
     }
 }

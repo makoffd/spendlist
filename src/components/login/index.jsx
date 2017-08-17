@@ -1,11 +1,17 @@
 import { connect } from 'react-redux'
-import { login } from '../../actions'
+import { loginRequest } from '../../actions'
 import Component from './component.jsx'
 
 const mapDispatchToProps = (dispatch, ownProps) => {
   return {
-    onSubmitClick: () => {
-      dispatch(login(ownProps.filter))
+    handleSubmitForm: (event) => {
+      event.preventDefault();
+      const data = new FormData(event.target);
+
+      dispatch(loginRequest({
+        email: data.get('email'),
+        password: data.get('password')
+      }))
     }
   }
 }
