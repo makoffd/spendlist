@@ -1,5 +1,5 @@
 import { connect } from 'react-redux'
-import { loginRequest } from '../../actions'
+import { loginRequest } from '../../actions/login'
 import Component from './component.jsx'
 
 const mapDispatchToProps = (dispatch, ownProps) => {

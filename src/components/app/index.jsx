@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import { Router, Route, Switch } from 'react-router';
+import { Route } from 'react-router';
 
 import './styles.css';
 
@@ -10,12 +10,14 @@ import Home from '../home';
 import Login from '../login';
 import Signup from '../signup';
 import Contact from '../contact';
+import Notifications from '../notifications';
 
 class App extends Component {
     render() {
         return (
             <div className="mdl-layout__container has-scrolling-header">
                 <div className="mdl-layout mdl-js-layout mdl-layout--fixed-header has-tabs is-upgraded">
+                    <Notifications />
                     <Header/>
                     <Container>
                         <Route exact path="/" component={Home}/>
