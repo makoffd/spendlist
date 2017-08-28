@@ -1,7 +1,8 @@
-import { call, put, all, takeLatest } from 'redux-saga/effects'
-import { loginResponse, loginFailed } from '../actions/login'
-import { showError } from '../actions/notifications'
-import Api from '../api'
+import { call, put, all, takeLatest } from 'redux-saga/effects';
+import { loginResponse, loginFailed } from '../actions/login';
+import { expensesResponse, expensesRequestFailed } from '../actions/expenses';
+import { showError } from '../actions/notifications';
+import Api from '../api';
 
 function* login(action) {
     try {
@@ -24,9 +25,19 @@ function* handleLoginFailed({ payload }) {
     return yield showErrorMessage(payload)
 }
 
+function* requestExpenses({ payload }) {
+    try {
+        const data = yield call(Api.getExpenses, payload);
+        yield put(expensesResponse(data));
+    } catch (e) {
+        yield put(expensesRequestFailed(e));
+    }
+}
+
 function* mySaga() {
   yield takeLatest('LOGIN_REQUEST', login);
   yield takeLatest('LOGIN_FAILED', handleLoginFailed);
+  yield takeLatest('EXPENSES_REQUEST', requestExpenses);
 }
 
 export default mySaga;

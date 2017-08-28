@@ -10,6 +10,7 @@ import Home from '../home';
 import Login from '../login';
 import Signup from '../signup';
 import Contact from '../contact';
+import Expenses from '../expenses';
 import Notifications from '../notifications';
 
 class App extends Component {
@@ -24,6 +25,7 @@ class App extends Component {
                         <Route path="/login" component={Login}/>
                         <Route path="/contact" component={Contact}/>
                         <Route path="/signup" component={Signup}/>
+                        <Route path="/expenses" component={Expenses}/>
                     </Container>
                     <Footer/>
                 </div>

@@ -1,5 +1,5 @@
 import { connect } from 'react-redux'
-import { loginRequest } from '../../actions/login'
+import { signupRequest } from '../../actions/login'
 import Component from './component.jsx'
 
 const mapDispatchToProps = (dispatch, ownProps) => {
@@ -8,7 +8,7 @@ const mapDispatchToProps = (dispatch, ownProps) => {
             event.preventDefault();
             const data = new FormData(event.target);
 
-            dispatch(loginRequest({
+            dispatch(signupRequest({
                 email: data.get('email'),
                 password: data.get('password')
             }))
