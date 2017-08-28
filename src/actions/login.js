@@ -18,3 +18,10 @@ export function loginFailed(payload) {
         payload
     }
 }
+
+export function signupRequest(payload) {
+    return {
+        type: 'SIGNUP_REQUEST',
+        payload
+    }
+}

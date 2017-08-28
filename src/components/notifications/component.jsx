@@ -10,8 +10,8 @@ export default class Notifications extends React.Component {
                 {this.props.notifications.map(
                     (item, index) =>
                         <Item
-                            key={'nt' + index}
-                            index={index}
+                            key={item.id}
+                            id={item.id}
                             text={item.text}
                             type={item.type}
                             />

@@ -7,7 +7,7 @@ export default class Item extends React.Component {
     static DisplayName = 'NotificationsItem';
     static PropTypes = {
         text: PropTypes.string,
-        index: PropTypes.number,
+        id: PropTypes.number,
         removeNotification: PropTypes.func
     }
 
@@ -21,6 +21,8 @@ export default class Item extends React.Component {
 
     hide = () => {
         this.setState({ visible: false });
+
+        this.props.removeNotification(this.props.id)
     }
 
     render() {
