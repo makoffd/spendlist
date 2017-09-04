@@ -5,3 +5,6 @@
   float: right;
   margin-left: auto;
 }
+span.mdl-layout__tab {
+    cursor: pointer;
+}
