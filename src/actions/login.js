@@ -25,3 +25,17 @@ export function signupRequest(payload) {
         payload
     }
 }
+
+export function logoutRequest(payload) {
+    return {
+        type: 'LOGOUT_REQUEST',
+        payload
+    }
+}
+
+export function logout(payload) {
+    return {
+        type: 'LOGOUT',
+        payload
+    }
+}
