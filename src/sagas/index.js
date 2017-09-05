@@ -1,8 +1,8 @@
 import { call, put, all, takeLatest } from 'redux-saga/effects';
 import {
-  loginResponse,
-  loginFailed,
-  logout
+    loginResponse,
+    loginFailed,
+    logout
 } from '../actions/login';
 import { expensesResponse, expensesRequestFailed } from '../actions/expenses';
 import { showError } from '../actions/notifications';
@@ -33,7 +33,7 @@ function* handleLogoutRequest(action) {
 }
 
 function* showErrorMessage(payload) {
-  yield put(showError(payload.msg));
+    yield put(showError(payload.msg));
 }
 
 function* handleLoginFailed({ payload }) {
@@ -54,10 +54,10 @@ function* requestExpenses({ payload }) {
 }
 
 function* mySaga() {
-  yield takeLatest('LOGIN_REQUEST', handleLoginRequest);
-  yield takeLatest('LOGIN_FAILED', handleLoginFailed);
-  yield takeLatest('LOGOUT_REQUEST', handleLogoutRequest);
-  yield takeLatest('EXPENSES_REQUEST', requestExpenses);
+    yield takeLatest('LOGIN_REQUEST', handleLoginRequest);
+    yield takeLatest('LOGIN_FAILED', handleLoginFailed);
+    yield takeLatest('LOGOUT_REQUEST', handleLogoutRequest);
+    yield takeLatest('EXPENSES_REQUEST', requestExpenses);
 }
 
 export default mySaga;

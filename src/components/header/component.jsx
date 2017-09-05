@@ -58,6 +58,23 @@ export default class extends React.Component {
         );
     }
 
+    renderSignUpButton() {
+        const { user } = this.props;
+
+        if (user) {
+            return null;
+        }
+
+        return (
+            <NavLink
+                to="/signup"
+                className="mdl-layout__tab"
+                activeClassName="is-active">
+                Signup
+            </NavLink>
+        );
+    }
+
     render() {
         return (
             <header className="mdl-layout__header mdl-layout__header--scroll mdl-color--primary">
@@ -89,12 +106,7 @@ export default class extends React.Component {
                     </NavLink>
                     {this.renderGreeting()}
                     {this.renderLoginButton()}
-                    <NavLink
-                        to="/signup"
-                        className="mdl-layout__tab"
-                        activeClassName="is-active">
-                        Signup
-                    </NavLink>
+                    {this.renderSignUpButton()}
                 </div>
             </header>
         )

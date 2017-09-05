@@ -4,31 +4,34 @@ const API = {
     expenses: '/api/expenses'
 }
 
-const post = (url, params) => {
+const request = (method, url, params) => {
+    const idToken = localStorage.getItem('id_token');
+    const headers = new Headers({
+        'Content-Type': 'application/json'
+    })
+
+    if (idToken) {
+        headers.append('x-access-token', idToken)
+    }
+
     const request = new Request(
         base + url,
         {
-            method: 'POST',
+            method,
             mode: 'cors',
-            headers: new Headers({
-                'Content-Type': 'application/json'
-            }),
+            headers,
             body: JSON.stringify(params)
         }
     )
     return fetch(request);
 }
 
+const post = (url, params) => {
+    return request('POST', url, params);
+}
+
 const get = (url, params) => {
-    const request = new Request(
-        base + url,
-        {
-            method: 'GET',
-            mode: 'cors',
-            body: JSON.stringify(params)
-        }
-    )
-    return fetch(request);
+    return request('GET', url, params);
 }
 
 export default {

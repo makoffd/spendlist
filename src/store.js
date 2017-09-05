@@ -5,6 +5,7 @@ import createHistory from 'history/createBrowserHistory';
 
 import notifications from './reducers/notifications';
 import userReducer from './reducers/user';
+import expensesReducer from './reducers/expenses';
 import mySaga from './sagas'
 
 const history = createHistory();
@@ -25,6 +26,7 @@ const store = createStore(
     combineReducers({
         router: routerReducer,
         user: userReducer,
+        expenses: expensesReducer,
         notifications,
     }),
     { user },
