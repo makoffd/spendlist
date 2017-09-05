@@ -2,6 +2,10 @@ import { connect } from 'react-redux'
 import { requestExpenses } from '../../actions/expenses'
 import Component from './component.jsx'
 
+const mapStateToProps = ({ expenses }) => ({
+    expenses
+})
+
 const mapDispatchToProps = (dispatch, ownProps) => {
     return {
         requestExpenses: (event) => {
@@ -11,7 +15,7 @@ const mapDispatchToProps = (dispatch, ownProps) => {
 }
 
 const Expenses = connect(
-  null,
+  mapStateToProps,
   mapDispatchToProps
 )(Component)
 
