@@ -1,8 +1,7 @@
 import React, { Component } from 'react';
 import { Route } from 'react-router';
 
-import './styles.css';
-
+import PrivateRoute from '../private-route';
 import Container from '../container';
 import Header from '../header';
 import Footer from '../footer';
@@ -12,6 +11,8 @@ import Signup from '../signup';
 import Contact from '../contact';
 import Expenses from '../expenses';
 import Notifications from '../notifications';
+
+import './styles.css';
 
 class App extends Component {
     render() {
@@ -25,7 +26,7 @@ class App extends Component {
                         <Route path="/login" component={Login}/>
                         <Route path="/contact" component={Contact}/>
                         <Route path="/signup" component={Signup}/>
-                        <Route path="/expenses" component={Expenses}/>
+                        <PrivateRoute path="/expenses" component={Expenses}/>
                     </Container>
                     <Footer/>
                 </div>

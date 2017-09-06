@@ -16,7 +16,9 @@ const mapDispatchToProps = (dispatch, ownProps) => {
 
 const Header = connect(
     mapStateToProps,
-    mapDispatchToProps
+    mapDispatchToProps,
+    null,
+    { pure: false }
 )(Component)
 
 export default Header;
