@@ -32,7 +32,7 @@ function* handleLogoutRequest(action) {
     }
 }
 
-function* showErrorMessage(payload) {
+function* showErrorMessage({ payload }) {
     yield put(showError(payload.msg));
 }
 
@@ -41,7 +41,7 @@ function* handleLoginFailed({ payload }) {
         return yield all(payload.map(showErrorMessage));
     }
 
-    return yield showErrorMessage(payload)
+    return yield showErrorMessage({ payload })
 }
 
 function* requestExpenses({ payload }) {
@@ -58,6 +58,7 @@ function* mySaga() {
     yield takeLatest('LOGIN_FAILED', handleLoginFailed);
     yield takeLatest('LOGOUT_REQUEST', handleLogoutRequest);
     yield takeLatest('EXPENSES_REQUEST', requestExpenses);
+    yield takeLatest('EXPENSES_REQUEST_FAILED', showErrorMessage);
 }
 
 export default mySaga;

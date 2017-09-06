@@ -2,6 +2,8 @@ import { connect } from 'react-redux'
 import { loginRequest } from '../../actions/login'
 import Component from './component.jsx'
 
+const mapStateToProps = ({ user }) => ({ user });
+
 const mapDispatchToProps = (dispatch, ownProps) => {
     return {
         handleSubmitForm: (event) => {
@@ -17,7 +19,7 @@ const mapDispatchToProps = (dispatch, ownProps) => {
 }
 
 const Login = connect(
-  null,
+  mapStateToProps,
   mapDispatchToProps
 )(Component)
 
