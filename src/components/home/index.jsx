@@ -28,30 +28,36 @@ export default (props) => (
                 <li className="mdl-menu__item">Dolor</li>
             </ul>
         </Section>
-        <section className="section--center mdl-grid mdl-grid--no-spacing mdl-shadow--2dp">
+        <Section>
             <div className="mdl-card mdl-cell mdl-cell--12-col">
                 <div className="mdl-card__supporting-text mdl-grid mdl-grid--no-spacing">
-                    <h4 className="mdl-cell mdl-cell--12-col">Details</h4>
                     <div className="section__circle-container mdl-cell mdl-cell--2-col mdl-cell--1-col-phone">
                         <div className="section__circle-container__circle mdl-color--primary"></div>
                     </div>
                     <div className="section__text mdl-cell mdl-cell--10-col-desktop mdl-cell--6-col-tablet mdl-cell--3-col-phone">
-                        <h5>Lorem ipsum dolor sit amet</h5>
-                        Dolore ex deserunt aute fugiat aute nulla ea sunt aliqua nisi cupidatat eu. Duis nulla tempor do aute et eiusmod velit exercitation nostrud quis <a href="/">proident minim</a>.
-                    </div>
-                    <div className="section__circle-container mdl-cell mdl-cell--2-col mdl-cell--1-col-phone">
-                        <div className="section__circle-container__circle mdl-color--primary"></div>
-                    </div>
-                    <div className="section__text mdl-cell mdl-cell--10-col-desktop mdl-cell--6-col-tablet mdl-cell--3-col-phone">
-                        <h5>Lorem ipsum dolor sit amet</h5>
-                        Dolore ex deserunt aute fugiat aute nulla ea sunt aliqua nisi cupidatat eu. Duis nulla tempor do aute et eiusmod velit exercitation nostrud quis <a href="/">proident minim</a>.
+                        <h4>Be aware</h4>
+                        <h6>Track your expenses and know for what and how much you spend.</h6>
                     </div>
                     <div className="section__circle-container mdl-cell mdl-cell--2-col mdl-cell--1-col-phone">
                         <div className="section__circle-container__circle mdl-color--primary"></div>
                     </div>
                     <div className="section__text mdl-cell mdl-cell--10-col-desktop mdl-cell--6-col-tablet mdl-cell--3-col-phone">
-                        <h5>Lorem ipsum dolor sit amet</h5>
-                        Dolore ex deserunt aute fugiat aute nulla ea sunt aliqua nisi cupidatat eu. Duis nulla tempor do aute et eiusmod velit exercitation nostrud quis <a href="/">proident minim</a>.
+                        <h4>Share</h4>
+                        <h6>Add your family members to manage family budget.</h6>
+                    </div>
+                    <div className="section__circle-container mdl-cell mdl-cell--2-col mdl-cell--1-col-phone">
+                        <div className="section__circle-container__circle mdl-color--primary"></div>
+                    </div>
+                    <div className="section__text mdl-cell mdl-cell--10-col-desktop mdl-cell--6-col-tablet mdl-cell--3-col-phone">
+                        <h4>See the big picture</h4>
+                        <h6>Get the regular analytics reports.</h6>
+                    </div>
+                    <div className="section__circle-container mdl-cell mdl-cell--2-col mdl-cell--1-col-phone">
+                        <div className="section__circle-container__circle mdl-color--primary"></div>
+                    </div>
+                    <div className="section__text mdl-cell mdl-cell--10-col-desktop mdl-cell--6-col-tablet mdl-cell--3-col-phone">
+                        <h4>Predict</h4>
+                        <h6>Make plans considering your expenses and savings.</h6>
                     </div>
                 </div>
                 <div className="mdl-card__actions">
@@ -66,8 +72,8 @@ export default (props) => (
                 <li className="mdl-menu__item" disabled>Ipsum</li>
                 <li className="mdl-menu__item">Dolor</li>
             </ul>
-        </section>
-        <section className="section--center mdl-grid mdl-grid--no-spacing mdl-shadow--2dp">
+        </Section>
+        <Section>
             <div className="mdl-card mdl-cell mdl-cell--12-col">
                 <div className="mdl-card__supporting-text">
                     <h4>Technology</h4>
@@ -85,22 +91,6 @@ export default (props) => (
                 <li className="mdl-menu__item" disabled>Ipsum</li>
                 <li className="mdl-menu__item">Dolor</li>
             </ul>
-        </section>
-        <section className="section--footer mdl-color--white mdl-grid">
-            <div className="section__circle-container mdl-cell mdl-cell--2-col mdl-cell--1-col-phone">
-                <div className="section__circle-container__circle mdl-color--accent section__circle--big"></div>
-            </div>
-            <div className="section__text mdl-cell mdl-cell--4-col-desktop mdl-cell--6-col-tablet mdl-cell--3-col-phone">
-                <h5>Lorem ipsum dolor sit amet</h5>
-                Qui sint ut et qui nisi cupidatat. Reprehenderit nostrud proident officia exercitation anim et pariatur ex.
-            </div>
-            <div className="section__circle-container mdl-cell mdl-cell--2-col mdl-cell--1-col-phone">
-                <div className="section__circle-container__circle mdl-color--accent section__circle--big"></div>
-            </div>
-            <div className="section__text mdl-cell mdl-cell--4-col-desktop mdl-cell--6-col-tablet mdl-cell--3-col-phone">
-                <h5>Lorem ipsum dolor sit amet</h5>
-                Qui sint ut et qui nisi cupidatat. Reprehenderit nostrud proident officia exercitation anim et pariatur ex.
-            </div>
-		  </section>
-      </div>
+        </Section>
+    </div>
 );

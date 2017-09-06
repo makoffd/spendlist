@@ -83,7 +83,8 @@ export default class extends React.Component {
                 <div className="mdl-layout--large-screen-only mdl-layout__header-row">
                   <h3>SpendList</h3>
                 </div>
-                <div className="mdl-layout--large-screen-only mdl-layout__header-row">
+                <div className="mdl-layout--large-screen-only mdl-layout__header-row mdl-layout__header-row_top">
+                    <h6>A different way to track your expenses.</h6>
                 </div>
                 <div className="mdl-layout__tab-bar mdl-js-ripple-effect mdl-color--primary-dark">
                     <NavLink

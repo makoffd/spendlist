@@ -1,0 +1,14 @@
+.mdl-layout__header-row_top h6 {
+  align-self: flex-start;
+  margin: 0;
+  font-weight: 300;
+}
+.section__circle-container {
+  display: flex;
+  align-items: center;
+}
+.section__text h6 {
+  font-weight: 300;
+  margin-top: 0px;
+  margin-bottom: 30px;
+}
