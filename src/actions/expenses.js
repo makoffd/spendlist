@@ -18,3 +18,17 @@ export function expensesRequestFailed(payload) {
         payload
     }
 }
+
+export function addExpense(payload) {
+    return {
+        type: 'ADD_EXPENSE_REQUEST',
+        payload
+    }
+}
+
+export function addExpenseRequestFailed(payload) {
+    return {
+        type: 'ADD_EXPENSE_REQUEST_FAILED',
+        payload
+    }
+}

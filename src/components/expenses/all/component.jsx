@@ -1,6 +1,9 @@
 import React from 'react';
-import Section from '../section';
+import { Link } from 'react-router-dom';
+import Section from '../../section';
 import ReactTable from "react-table";
+import FloatingActionButton from 'material-ui/FloatingActionButton';
+import ContentAdd from 'material-ui/svg-icons/content/add';
 
 import "react-table/react-table.css";
 import './styles.css';
@@ -21,7 +24,7 @@ export default class Expenses extends React.Component {
         if (this.props.expenses.length === 0) {
             return (
                 <div>
-                    There's nothing to show yet.
+                    There's nothing to show yet. Add some expenses.
                 </div>
             )
         }
@@ -59,15 +62,21 @@ export default class Expenses extends React.Component {
 
     render() {
         return (
-            <div className="mdl-layout__tab-panel">
-                <Section>
-                    <div className="mdl-card__supporting-text">
-                        <h1>Expenses</h1>
-                        <hr/>
-                        {this.renderExpensesTable()}
-                    </div>
-                </Section>
-            </div>
+            <Section>
+                <div className="mdl-card__supporting-text">
+                    <h2>Expenses</h2>
+                     <Link to={`${this.props.match.url}/add`}>
+                        <FloatingActionButton
+                            className={'expenses__add'}
+                            secondary={true}
+                            >
+                            <ContentAdd />
+                        </FloatingActionButton>
+                    </Link>
+                    <hr/>
+                    {this.renderExpensesTable()}
+                </div>
+            </Section>
         );
     }
 };

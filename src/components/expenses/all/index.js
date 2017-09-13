@@ -1,5 +1,5 @@
 import { connect } from 'react-redux'
-import { requestExpenses } from '../../actions/expenses'
+import { requestExpenses } from '../../../actions/expenses'
 import Component from './component.jsx'
 
 const mapStateToProps = ({ expenses }) => ({
