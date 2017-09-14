@@ -16,7 +16,9 @@ const mapDispatchToProps = (dispatch, ownProps) => {
 
 const Expenses = connect(
   mapStateToProps,
-  mapDispatchToProps
+  mapDispatchToProps,
+  null,
+  { pure: false }
 )(Component)
 
 export default Expenses;

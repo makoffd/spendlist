@@ -16,7 +16,7 @@
 }
 
 .notification_type_error {
-    color: rgb(48,63,159);
+    color: red;
 }
 
 .notification__text {

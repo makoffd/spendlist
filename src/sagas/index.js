@@ -4,8 +4,12 @@ import {
     loginFailed,
     logout
 } from '../actions/login';
-import { expensesResponse, expensesRequestFailed } from '../actions/expenses';
-import { showError } from '../actions/notifications';
+import {
+    expensesResponse,
+    expensesRequestFailed,
+    addExpenseRequestFailed,
+} from '../actions/expenses';
+import { showError, showSuccess } from '../actions/notifications';
 import Api from '../api';
 
 function* handleLoginRequest(action) {
@@ -32,16 +36,16 @@ function* handleLogoutRequest(action) {
     }
 }
 
-function* showErrorMessage({ payload }) {
+function* showErrorMessage(payload) {
     yield put(showError(payload.msg));
 }
 
-function* handleLoginFailed({ payload }) {
+function* showErrors({ payload }) {
     if (payload.length > 0) {
         return yield all(payload.map(showErrorMessage));
     }
 
-    return yield showErrorMessage({ payload })
+    return yield showErrorMessage(payload)
 }
 
 function* requestExpenses({ payload }) {
@@ -53,12 +57,23 @@ function* requestExpenses({ payload }) {
     }
 }
 
+function* addExpenseRequest({ payload }) {
+    try {
+        yield call(Api.addExpense, payload);
+        yield put(showSuccess('Expense added'));
+    } catch (e) {
+        yield put(addExpenseRequestFailed(e));
+    }
+}
+
 function* mySaga() {
     yield takeLatest('LOGIN_REQUEST', handleLoginRequest);
-    yield takeLatest('LOGIN_FAILED', handleLoginFailed);
+    yield takeLatest('LOGIN_FAILED', showErrors);
     yield takeLatest('LOGOUT_REQUEST', handleLogoutRequest);
     yield takeLatest('EXPENSES_REQUEST', requestExpenses);
     yield takeLatest('EXPENSES_REQUEST_FAILED', showErrorMessage);
+    yield takeLatest('ADD_EXPENSE_REQUEST', addExpenseRequest);
+    yield takeLatest('ADD_EXPENSE_REQUEST_FAILED', showErrors);
 }
 
 export default mySaga;

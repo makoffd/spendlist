@@ -9,13 +9,22 @@ import DatePicker from 'material-ui/DatePicker';
 import "react-table/react-table.css";
 import './styles.css';
 
-export default class Expenses extends React.Component {
+const formatDate = d => {
+    const date = ('0' + d.getDate()).slice(-2);
+    const month = ('0' + (d.getMonth() + 1)).slice(-2);
+
+    return `${date}-${month}-${d.getFullYear()}`;
+};
+
+export default class ExpensesAdd extends React.Component {
+    static DisplayName = 'ExpensesAdd';
     static defaultProps = {
-        categories: []
+        categories: [],
+        currencies: []
     }
 
     state = {
-        currency: 1,
+        currency: this.props.currencies[0] ? this.props.currencies[0]._id : '',
         category: this.props.categories[0],
         date: new Date()
     };
@@ -41,6 +50,7 @@ export default class Expenses extends React.Component {
                         <hr/>
                         <form onSubmit={this.props.handleSubmitForm}>
                             <TextField
+                                required
                                 name="amount"
                                 hintText="Amount"
                                 />
@@ -51,8 +61,15 @@ export default class Expenses extends React.Component {
                                 value={this.state.currency}
                                 onChange={this.handleCurrencyChange}
                                 >
-                                <MenuItem value={1} primaryText="THB" />
-                                <MenuItem value={2} primaryText="USD" />
+                                {this.props.currencies.map(currency => (
+                                    <MenuItem
+                                        value={currency._id}
+                                        key={currency._id}
+                                        primaryText={
+                                            currency.shortcut + ' ' + currency.symbol
+                                        }
+                                        />
+                                ))}
                             </SelectField>
                             <input
                                 type="hidden"
@@ -85,6 +102,7 @@ export default class Expenses extends React.Component {
                                 name="date"
                                 value={this.state.date}
                                 hintText="Date"
+                                formatDate={formatDate}
                                 onChange={this.handleDateChange}
                                 />
                             <br />

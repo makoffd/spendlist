@@ -6,6 +6,7 @@ import createHistory from 'history/createBrowserHistory';
 import notifications from './reducers/notifications';
 import userReducer from './reducers/user';
 import expensesReducer from './reducers/expenses';
+import currenciesReducer from './reducers/currencies';
 import mySaga from './sagas'
 
 const history = createHistory();
@@ -27,6 +28,7 @@ const store = createStore(
         router: routerReducer,
         user: userReducer,
         expenses: expensesReducer,
+        currencies: currenciesReducer,
         notifications,
     }),
     { user },
