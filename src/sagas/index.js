@@ -15,6 +15,8 @@ import {
 import { showError, showSuccess } from '../actions/notifications';
 import Api from '../api';
 
+const defaultErrorMsg = 'Connection error';
+
 function* handleLoginRequest(action) {
     try {
         const data = yield call(Api.login, action.payload);
@@ -50,7 +52,7 @@ function* handleLogoutRequest(action) {
 }
 
 function* showErrorMessage(payload) {
-    yield put(showError(payload.msg));
+    yield put(showError(payload.msg || defaultErrorMsg));
 }
 
 function* showErrors({ payload }) {
