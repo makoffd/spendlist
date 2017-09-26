@@ -4,6 +4,8 @@ export default (currencies = [], action) => {
     switch (type) {
         case 'EXPENSES_RESPONSE':
             return [ ...payload.currencies ]
+        case 'LOGOUT':
+            return []
         default:
             return currencies
     }
