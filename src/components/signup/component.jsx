@@ -11,16 +11,16 @@ export default props => (
                 <hr/>
                 <form onSubmit={props.handleSubmitForm}>
                     <Fieldgroup>
-                        <label htmlFor="name">Email</label>
-                        <input id="name" placeholder="Username" />
+                        <label htmlFor="email">Email</label>
+                        <input id="email" name="email" type="email" placeholder="E-mail" />
                     </Fieldgroup>
                     <Fieldgroup>
                         <label htmlFor="pwd">Password</label>
-                        <input type="password" id="pwd" placeholder="Password" />
+                        <input name="password" type="password" id="pwd" placeholder="Password" />
                     </Fieldgroup>
                     <Fieldgroup>
                         <label htmlFor="confirm">Confirm Password</label>
-                        <input type="password" id="confirm" placeholder="Confirm Password" />
+                        <input name="confirmPassword" type="password" id="confirm" placeholder="Confirm Password" />
                     </Fieldgroup>
                     <div className="fieldgroup">
                         <Button mods="button--primary">{'Signup'}</Button>

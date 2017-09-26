@@ -1,6 +1,7 @@
 const base = 'http://localhost:3001';
 const API = {
     login: '/api/login',
+    signup: '/api/signup',
     expenses: '/api/expenses',
     addExpense: '/api/expenses/add'
 }
@@ -50,6 +51,9 @@ const template = async (method, address, params) => {
 export default {
     login(params) {
         return template(post, API.login, params);
+    },
+    signup(params) {
+        return template(post, API.signup, params);
     },
     getExpenses(params) {
         return  template(get, API.expenses, params);

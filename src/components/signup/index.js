@@ -10,7 +10,8 @@ const mapDispatchToProps = (dispatch, ownProps) => {
 
             dispatch(signupRequest({
                 email: data.get('email'),
-                password: data.get('password')
+                password: data.get('password'),
+                confirmPassword: data.get('confirmPassword')
             }))
         }
     }

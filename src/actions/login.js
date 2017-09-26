@@ -26,6 +26,13 @@ export function signupRequest(payload) {
     }
 }
 
+export function signupFailed(payload) {
+    return {
+        type: 'SIGNUP_FAILED',
+        payload
+    }
+}
+
 export function logoutRequest(payload) {
     return {
         type: 'LOGOUT_REQUEST',

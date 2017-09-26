@@ -1,10 +1,13 @@
 import { call, put, all, takeLatest } from 'redux-saga/effects';
+import { push } from 'react-router-redux';
 import {
     loginResponse,
     loginFailed,
-    logout
+    logout,
+    signupFailed
 } from '../actions/login';
 import {
+    requestExpenses,
     expensesResponse,
     expensesRequestFailed,
     addExpenseRequestFailed,
@@ -23,6 +26,16 @@ function* handleLoginRequest(action) {
         yield put(loginResponse({ ...user, token }));
     } catch (e) {
         yield put(loginFailed(e));
+    }
+}
+
+function* handleSignupRequest(action) {
+    try {
+        yield call(Api.signup, action.payload);
+        yield put(showSuccess('User added'));
+        yield put(push('/login'));
+    } catch (e) {
+        yield put(signupFailed(e));
     }
 }
 
@@ -48,7 +61,7 @@ function* showErrors({ payload }) {
     return yield showErrorMessage(payload)
 }
 
-function* requestExpenses({ payload }) {
+function* handleExpensesRequest({ payload }) {
     try {
         const data = yield call(Api.getExpenses, payload);
         yield put(expensesResponse(data));
@@ -61,6 +74,8 @@ function* addExpenseRequest({ payload }) {
     try {
         yield call(Api.addExpense, payload);
         yield put(showSuccess('Expense added'));
+        yield put(requestExpenses());
+        yield put(push('/expenses'));
     } catch (e) {
         yield put(addExpenseRequestFailed(e));
     }
@@ -69,8 +84,10 @@ function* addExpenseRequest({ payload }) {
 function* mySaga() {
     yield takeLatest('LOGIN_REQUEST', handleLoginRequest);
     yield takeLatest('LOGIN_FAILED', showErrors);
+    yield takeLatest('SIGNUP_REQUEST', handleSignupRequest);
+    yield takeLatest('SIGNUP_FAILED', showErrors);
     yield takeLatest('LOGOUT_REQUEST', handleLogoutRequest);
-    yield takeLatest('EXPENSES_REQUEST', requestExpenses);
+    yield takeLatest('EXPENSES_REQUEST', handleExpensesRequest);
     yield takeLatest('EXPENSES_REQUEST_FAILED', showErrorMessage);
     yield takeLatest('ADD_EXPENSE_REQUEST', addExpenseRequest);
     yield takeLatest('ADD_EXPENSE_REQUEST_FAILED', showErrors);
