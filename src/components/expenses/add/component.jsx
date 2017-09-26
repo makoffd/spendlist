@@ -5,6 +5,7 @@ import RaisedButton from 'material-ui/RaisedButton';
 import SelectField from 'material-ui/SelectField';
 import MenuItem from 'material-ui/MenuItem';
 import DatePicker from 'material-ui/DatePicker';
+import IconAdd from 'material-ui/svg-icons/action/done';
 
 import "react-table/react-table.css";
 import './styles.css';
@@ -21,7 +22,8 @@ export default class ExpensesAdd extends React.Component {
     static defaultProps = {
         categories: [],
         currencies: [],
-        requestExpenses: () => {}
+        requestExpenses: () => {},
+        handleBackClick: () => {}
     }
 
     getDefaultCurrency = () => {
@@ -129,9 +131,18 @@ export default class ExpensesAdd extends React.Component {
                             <br />
                             <br />
                              <RaisedButton
+                                 style={{ marginBottom: 10 }}
                                  type="submit"
                                  label="Add"
+                                 labelPosition="before"
                                  primary={true}
+                                 icon={<IconAdd />}
+                                />
+                             <RaisedButton
+                                 style={{ marginLeft: 10, marginBottom: 10 }}
+                                 label="Back"
+                                 onClick={this.props.handleBackClick}
+                                 primary={false}
                                 />
                         </form>
                     </div>

@@ -1,4 +1,5 @@
 import { connect } from 'react-redux'
+import { goBack } from 'react-router-redux'
 import { addExpense, requestExpenses } from '../../../actions/expenses'
 import Component from './component.jsx'
 
@@ -23,6 +24,10 @@ const mapDispatchToProps = (dispatch, ownProps) => {
         },
         requestExpenses: (event) => {
             dispatch(requestExpenses())
+        },
+        handleBackClick: (event) => {
+            event.preventDefault();
+            dispatch(goBack());
         }
     }
 }
