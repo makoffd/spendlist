@@ -1,5 +1,5 @@
 import { connect } from 'react-redux'
-import { addExpense } from '../../../actions/expenses'
+import { addExpense, requestExpenses } from '../../../actions/expenses'
 import Component from './component.jsx'
 
 const mapStateToProps = ({ user, currencies }) => ({
@@ -20,6 +20,9 @@ const mapDispatchToProps = (dispatch, ownProps) => {
                 date: data.get('date'),
                 comment: data.get('comment')
             }))
+        },
+        requestExpenses: (event) => {
+            dispatch(requestExpenses())
         }
     }
 }

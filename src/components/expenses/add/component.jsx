@@ -20,14 +20,28 @@ export default class ExpensesAdd extends React.Component {
     static DisplayName = 'ExpensesAdd';
     static defaultProps = {
         categories: [],
-        currencies: []
+        currencies: [],
+        requestExpenses: () => {}
+    }
+
+    getDefaultCurrency = () => {
+        return this.props.currencies[0] ? this.props.currencies[0]._id : ''
     }
 
     state = {
-        currency: this.props.currencies[0] ? this.props.currencies[0]._id : '',
+        currency: this.getDefaultCurrency(),
         category: this.props.categories[0],
         date: new Date()
     };
+
+
+
+    componentDidMount() {
+        console.log(this.props.currencies);
+        if (this.props.currencies.length === 0) {
+            this.props.requestExpenses()
+        }
+    }
 
     handleCurrencyChange = (event, index, value) => this.setState(
         { currency: value }
@@ -58,7 +72,7 @@ export default class ExpensesAdd extends React.Component {
                             <SelectField
                                 name="currency"
                                 floatingLabelText="Currency"
-                                value={this.state.currency}
+                                value={this.state.currency || this.getDefaultCurrency()}
                                 onChange={this.handleCurrencyChange}
                                 >
                                 {this.props.currencies.map(currency => (
