@@ -4,20 +4,47 @@ import Section from '../../section';
 import ReactTable from "react-table";
 import FloatingActionButton from 'material-ui/FloatingActionButton';
 import ContentAdd from 'material-ui/svg-icons/content/add';
+import IconButton from 'material-ui/IconButton';
+import EditButton from 'material-ui/svg-icons/editor/mode-edit';
+import RemoveButton from 'material-ui/svg-icons/content/clear';
+import { red500 } from 'material-ui/styles/colors';
 
 import "react-table/react-table.css";
 import './styles.css';
 
+const iconStyles = {
+    width: 30,
+    height: 30,
+    padding: 5
+};
+
 export default class Expenses extends React.Component {
     static defaultProps = {
         expenses: [],
-        requestExpenses: () => {}
+        requestExpenses: () => {},
+        removeExpense: () => {}
     }
 
     componentDidMount() {
         if (this.props.expenses.length === 0) {
             this.props.requestExpenses()
         }
+    }
+
+    renderActionButtons = (expense) => {
+        return (
+            <div className={'expenses__actions'}>
+                <IconButton style={iconStyles}>
+                    <EditButton />
+                </IconButton>
+                <IconButton style={iconStyles}>
+                    <RemoveButton
+                        onClick={this.props.removeExpense.bind(this, expense._id)}
+                        color={red500}
+                        />
+                </IconButton>
+            </div>
+        )
     }
 
     renderExpensesTable() {
@@ -52,6 +79,11 @@ export default class Expenses extends React.Component {
                     {
                         Header: "User",
                         accessor: "user"
+                    },
+                    {
+                        Header: "Actions",
+                        accessor: "actions",
+                        Cell: row => this.renderActionButtons(row.original)
                     }
                 ]}
                 defaultPageSize={20}

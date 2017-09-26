@@ -37,7 +37,6 @@ export default class ExpensesAdd extends React.Component {
 
 
     componentDidMount() {
-        console.log(this.props.currencies);
         if (this.props.currencies.length === 0) {
             this.props.requestExpenses()
         }
