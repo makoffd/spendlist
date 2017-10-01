@@ -1,6 +1,7 @@
 import React from 'react';
 import { Link } from 'react-router-dom';
 import Section from '../../section';
+import ConfirmationPopup from '../../popups/confirmation';
 import ReactTable from "react-table";
 import FloatingActionButton from 'material-ui/FloatingActionButton';
 import ContentAdd from 'material-ui/svg-icons/content/add';
@@ -22,12 +23,42 @@ export default class Expenses extends React.Component {
     static defaultProps = {
         expenses: [],
         requestExpenses: () => {},
-        removeExpense: () => {}
+        deleteExpense: () => {}
+    }
+
+    state = {
+        deleteExpenseId: null,
+        showDeleteConfirmPopup: false
     }
 
     componentDidMount() {
         if (this.props.expenses.length === 0) {
             this.props.requestExpenses()
+        }
+    }
+
+    handleRemoveExpenseClick = (expenseId) => {
+        this.setState({
+            deleteExpenseId: expenseId,
+            showDeleteConfirmPopup: true
+        })
+    }
+
+    handleCancelDeleteExpense = () => {
+        this.setState({
+            deleteExpenseId: null,
+            showDeleteConfirmPopup: false
+        })
+    }
+
+    handleConfirmDeleteExpense = () => {
+        if (this.state.deleteExpenseId) {
+            this.props.deleteExpense(this.state.deleteExpenseId);
+
+            this.setState({
+                deleteExpenseId: null,
+                showDeleteConfirmPopup: false
+            })
         }
     }
 
@@ -39,7 +70,7 @@ export default class Expenses extends React.Component {
                 </IconButton>
                 <IconButton style={iconStyles}>
                     <RemoveButton
-                        onClick={this.props.removeExpense.bind(this, expense._id)}
+                        onClick={this.handleRemoveExpenseClick.bind(this, expense._id)}
                         color={red500}
                         />
                 </IconButton>
@@ -57,38 +88,47 @@ export default class Expenses extends React.Component {
         }
 
         return (
-            <ReactTable
-                data={this.props.expenses}
-                columns={[
-                    {
-                        Header: "Amount",
-                        accessor: "amount"
-                    },
-                    {
-                        Header: "Currency",
-                        accessor: "currency.shortcut"
-                    },
-                    {
-                        Header: "Category",
-                        accessor: "category"
-                    },
-                    {
-                        Header: "Date",
-                        accessor: "date"
-                    },
-                    {
-                        Header: "User",
-                        accessor: "user"
-                    },
-                    {
-                        Header: "Actions",
-                        accessor: "actions",
-                        Cell: row => this.renderActionButtons(row.original)
-                    }
-                ]}
-                defaultPageSize={20}
-                className="-striped -highlight"
-            />
+            <div>
+                <ConfirmationPopup
+                    open={this.state.showDeleteConfirmPopup}
+                    onConfirm={this.handleConfirmDeleteExpense}
+                    onClose={this.handleCancelDeleteExpense}
+                    >
+                    Are you sure you want to delete this expense?
+                </ConfirmationPopup>
+                <ReactTable
+                    data={this.props.expenses}
+                    columns={[
+                        {
+                            Header: "Amount",
+                            accessor: "amount"
+                        },
+                        {
+                            Header: "Currency",
+                            accessor: "currency.shortcut"
+                        },
+                        {
+                            Header: "Category",
+                            accessor: "category"
+                        },
+                        {
+                            Header: "Date",
+                            accessor: "date"
+                        },
+                        {
+                            Header: "User",
+                            accessor: "user"
+                        },
+                        {
+                            Header: "Actions",
+                            accessor: "actions",
+                            Cell: row => this.renderActionButtons(row.original)
+                        }
+                    ]}
+                    defaultPageSize={20}
+                    className="-striped -highlight"
+                />
+            </div>
         )
     }
 

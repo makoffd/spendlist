@@ -32,3 +32,17 @@ export function addExpenseRequestFailed(payload) {
         payload
     }
 }
+
+export function deleteExpense(payload) {
+    return {
+        type: 'DELETE_EXPENSE_REQUEST',
+        payload
+    }
+}
+
+export function deleteExpenseRequestFailed(payload) {
+    return {
+        type: 'DELETE_EXPENSE_REQUEST_FAILED',
+        payload
+    }
+}

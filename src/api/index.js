@@ -3,7 +3,16 @@ const API = {
     login: '/api/login',
     signup: '/api/signup',
     expenses: '/api/expenses',
-    addExpense: '/api/expenses/add'
+    addExpense: '/api/expenses/add',
+    deleteExpense: '/api/expenses/delete'
+}
+
+const getQueryString = params => {
+    const esc = encodeURIComponent;
+
+    return Object.keys(params)
+        .map(k => esc(k) + '=' + esc(params[k]))
+        .join('&');
 }
 
 const request = (method, url, params) => {
@@ -11,19 +20,28 @@ const request = (method, url, params) => {
     const headers = new Headers({
         'Content-Type': 'application/json'
     })
+    const requestParams = {
+        method,
+        mode: 'cors',
+        headers
+    }
 
     if (idToken) {
         headers.append('x-access-token', idToken)
     }
 
-    const request = new Request(
-        base + url,
-        {
-            method,
-            mode: 'cors',
-            headers,
-            body: JSON.stringify(params)
+    let requestUrl = base + url;
+    if (['GET', 'DELETE'].indexOf(method) > -1) {
+        if (params) {
+            requestUrl = requestUrl + '?' + getQueryString(params)
         }
+    } else {
+        requestParams.body = JSON.stringify(params);
+    }
+
+    const request = new Request(
+        requestUrl,
+        requestParams
     )
     return fetch(request);
 }
@@ -60,5 +78,8 @@ export default {
     },
     addExpense(params) {
         return template(post, API.addExpense, params);
+    },
+    deleteExpense(params) {
+        return template(get, API.deleteExpense, params);
     },
 }

@@ -96,7 +96,7 @@ export default class extends React.Component {
                         to="/expenses"
                         className="mdl-layout__tab"
                         activeClassName="is-active">
-                        Expences
+                        Expenses
                     </NavLink>
                     <NavLink
                         to="/contact"

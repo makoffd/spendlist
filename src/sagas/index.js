@@ -11,6 +11,7 @@ import {
     expensesResponse,
     expensesRequestFailed,
     addExpenseRequestFailed,
+    deleteExpenseRequestFailed,
 } from '../actions/expenses';
 import { showError, showSuccess } from '../actions/notifications';
 import Api from '../api';
@@ -52,7 +53,7 @@ function* handleLogoutRequest(action) {
 }
 
 function* showErrorMessage(payload) {
-    yield put(showError(payload.msg || defaultErrorMsg));
+    yield put(showError(payload.msg || payload.message || defaultErrorMsg));
 }
 
 function* showErrors({ payload }) {
@@ -76,10 +77,22 @@ function* addExpenseRequest({ payload }) {
     try {
         yield call(Api.addExpense, payload);
         yield put(showSuccess('Expense added'));
+
         yield put(requestExpenses());
         yield put(push('/expenses'));
     } catch (e) {
         yield put(addExpenseRequestFailed(e));
+    }
+}
+
+function* handleDeleteExpenseRequest({ payload }) {
+    try {
+        yield call(Api.deleteExpense, payload);
+        yield put(showSuccess('Expense deleted'));
+
+        yield put(requestExpenses());
+    } catch (e) {
+        yield put(deleteExpenseRequestFailed(e));
     }
 }
 
@@ -93,6 +106,8 @@ function* mySaga() {
     yield takeLatest('EXPENSES_REQUEST_FAILED', showErrorMessage);
     yield takeLatest('ADD_EXPENSE_REQUEST', addExpenseRequest);
     yield takeLatest('ADD_EXPENSE_REQUEST_FAILED', showErrors);
+    yield takeLatest('DELETE_EXPENSE_REQUEST', handleDeleteExpenseRequest);
+    yield takeLatest('DELETE_EXPENSE_REQUEST_FAILED', showErrors);
 }
 
 export default mySaga;
