@@ -1,12 +1,34 @@
 import { connect } from 'react-redux'
 import { goBack } from 'react-router-redux'
-import { addExpense, requestExpenses } from '../../../actions/expenses'
+import { editExpense, requestExpenses } from '../../../actions/expenses'
 import Component from '../form/component.jsx'
 
-const mapStateToProps = ({ user, currencies }) => ({
-    categories: user.categories,
-    currencies
-});
+const mapStateToProps = ({ user, currencies, expenses }, { match }) => {
+    let props = {
+        actionTitle: 'Edit'
+    }
+
+    if (expenses.length === 0) {
+        return props
+    }
+
+    const expense = expenses.find(el => el._id === match.params.id);
+    const { _id: id, amount, date, category, currency, comment } = expense;
+
+    props = {
+        ...props,
+        categories: user.categories,
+        currencies,
+        id,
+        amount,
+        date,
+        category,
+        currency: currency._id,
+        comment
+    };
+
+    return props;
+};
 
 const mapDispatchToProps = (dispatch, ownProps) => {
     return {
@@ -14,7 +36,8 @@ const mapDispatchToProps = (dispatch, ownProps) => {
             event.preventDefault();
             const data = new FormData(event.target);
 
-            dispatch(addExpense({
+            dispatch(editExpense({
+                id: data.get('id'),
                 amount: parseFloat(data.get('amount')),
                 currency: data.get('currency'),
                 category: data.get('category'),
@@ -37,6 +60,6 @@ const Expenses = connect(
     mapDispatchToProps
 )(Component)
 
-Expenses.displayName = 'ExpensesAdd';
+Expenses.displayName = 'ExpensesEdit';
 
 export default Expenses;

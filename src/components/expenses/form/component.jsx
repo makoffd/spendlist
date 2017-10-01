@@ -5,7 +5,7 @@ import RaisedButton from 'material-ui/RaisedButton';
 import SelectField from 'material-ui/SelectField';
 import MenuItem from 'material-ui/MenuItem';
 import DatePicker from 'material-ui/DatePicker';
-import IconAdd from 'material-ui/svg-icons/action/done';
+import IconDone from 'material-ui/svg-icons/action/done';
 
 import "react-table/react-table.css";
 import './styles.css';
@@ -17,11 +17,21 @@ const formatDate = d => {
     return `${date}-${month}-${d.getFullYear()}`;
 };
 
+// Parse date 02-10-2017 Mon to JS date
+const parseDate = d => {
+    const str = d.split(' ')[0];
+    const [ DD, MM, YY ] = str.split('-');
+
+    return new Date(`${YY}-${MM}-${DD}`);
+}
+
 export default class ExpensesAdd extends React.Component {
-    static DisplayName = 'ExpensesAdd';
+    static displayName = 'ExpensesForm';
     static defaultProps = {
         categories: [],
         currencies: [],
+        actionTitle: 'Add',
+        amount: '',
         requestExpenses: () => {},
         handleBackClick: () => {}
     }
@@ -31,9 +41,12 @@ export default class ExpensesAdd extends React.Component {
     }
 
     state = {
-        currency: this.getDefaultCurrency(),
-        category: this.props.categories[0],
-        date: new Date()
+        amount: this.props.amount || '',
+        currency: this.props.currency || this.getDefaultCurrency(),
+        category: this.props.category || this.props.categories[0],
+        date: this.props.date ? parseDate(this.props.date) : new Date(),
+        comment: this.props.comment || '',
+        currencies: this.props.currencies,
     };
 
 
@@ -43,6 +56,22 @@ export default class ExpensesAdd extends React.Component {
             this.props.requestExpenses()
         }
     }
+
+    componentWillReceiveProps(nextProps) {
+        if (nextProps.currencies.length !== this.state.currencies.length) {
+            this.setState({
+                amount: this.props.amount || '',
+                currency: this.props.currency || this.getDefaultCurrency(),
+                category: this.props.category || this.props.categories[0],
+                date: this.props.date ? parseDate(this.props.date) : new Date(),
+                comment: this.props.comment || '',
+            });
+        }
+    }
+
+    handleAmountChange = (event) => this.setState(
+        { amount: event.target.value }
+    );
 
     handleCurrencyChange = (event, index, value) => this.setState(
         { currency: value }
@@ -56,18 +85,24 @@ export default class ExpensesAdd extends React.Component {
         { date: value }
     );
 
+    handleCommentChange = (event) => this.setState(
+        { comment: event.target.value }
+    );
+
     render() {
         return (
             <div className="mdl-layout__tab-panel">
                 <Section>
                     <div className="mdl-card__supporting-text">
-                        <h2>Add Expenses</h2>
+                        <h2>{`${this.props.actionTitle} expense`}</h2>
                         <hr/>
                         <form onSubmit={this.props.handleSubmitForm}>
                             <TextField
                                 required
                                 name="amount"
+                                value={this.state.amount}
                                 hintText="Amount"
+                                onChange={this.handleAmountChange}
                                 />
                             <br />
                             <SelectField
@@ -89,7 +124,12 @@ export default class ExpensesAdd extends React.Component {
                             <input
                                 type="hidden"
                                 name="currency"
-                                value={this.state.currency}
+                                value={this.state.currency || this.getDefaultCurrency()}
+                                />
+                            <input
+                                type="hidden"
+                                name="id"
+                                value={this.props.id}
                                 />
                             <br />
                             <SelectField
@@ -123,20 +163,22 @@ export default class ExpensesAdd extends React.Component {
                             <br />
                             <TextField
                                 name="comment"
+                                value={this.state.comment}
                                 hintText="Comment"
                                 multiLine={true}
                                 rows={1}
                                 rowsMax={4}
+                                onChange={this.handleCommentChange}
                                 />
                             <br />
                             <br />
                              <RaisedButton
                                  style={{ marginBottom: 10 }}
                                  type="submit"
-                                 label="Add"
+                                 label={this.props.actionTitle}
                                  labelPosition="before"
                                  primary={true}
-                                 icon={<IconAdd />}
+                                 icon={<IconDone />}
                                 />
                              <RaisedButton
                                  style={{ marginLeft: 10, marginBottom: 10 }}

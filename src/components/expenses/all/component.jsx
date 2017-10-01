@@ -23,7 +23,8 @@ export default class Expenses extends React.Component {
     static defaultProps = {
         expenses: [],
         requestExpenses: () => {},
-        deleteExpense: () => {}
+        deleteExpense: () => {},
+        editExpense: () => {},
     }
 
     state = {
@@ -62,11 +63,17 @@ export default class Expenses extends React.Component {
         }
     }
 
+    handleEditExpenseClick = (expenseId) => {
+        this.props.editExpense(expenseId);
+    }
+
     renderActionButtons = (expense) => {
         return (
             <div className={'expenses__actions'}>
                 <IconButton style={iconStyles}>
-                    <EditButton />
+                    <EditButton
+                        onClick={this.handleEditExpenseClick.bind(this, expense._id)}
+                        />
                 </IconButton>
                 <IconButton style={iconStyles}>
                     <RemoveButton

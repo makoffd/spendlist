@@ -46,3 +46,17 @@ export function deleteExpenseRequestFailed(payload) {
         payload
     }
 }
+
+export function editExpense(payload) {
+    return {
+        type: 'EDIT_EXPENSE_REQUEST',
+        payload
+    }
+}
+
+export function editExpenseRequestFailed(payload) {
+    return {
+        type: 'EDIT_EXPENSE_REQUEST_FAILED',
+        payload
+    }
+}

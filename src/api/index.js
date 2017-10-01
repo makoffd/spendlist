@@ -4,7 +4,8 @@ const API = {
     signup: '/api/signup',
     expenses: '/api/expenses',
     addExpense: '/api/expenses/add',
-    deleteExpense: '/api/expenses/delete'
+    deleteExpense: '/api/expenses/delete',
+    editExpense: '/api/expenses/edit'
 }
 
 const getQueryString = params => {
@@ -81,5 +82,8 @@ export default {
     },
     deleteExpense(params) {
         return template(get, API.deleteExpense, params);
+    },
+    editExpense(params) {
+        return template(post, API.editExpense, params);
     },
 }
