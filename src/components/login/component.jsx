@@ -5,7 +5,9 @@ import Section from '../section';
 import Fieldgroup from '../fieldgroup';
 import Button from '../button';
 
-class Login extends React.Component {
+export default class Login extends React.Component {
+    static displayName = 'Login';
+
     render() {
         const { from } = this.props.location.state || { from: { pathname: '/' } }
 
@@ -14,7 +16,7 @@ class Login extends React.Component {
         }
 
         return (
-            <div className="mdl-layout__tab-panel">
+            <div className="login mdl-layout__tab-panel">
                 <Section>
                     <div className="mdl-card__supporting-text">
                         <h1>Login</h1>
@@ -40,7 +42,3 @@ class Login extends React.Component {
         );
     }
 }
-
-Login.displayName = 'Login';
-
-export default Login;

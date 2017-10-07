@@ -1,0 +1,6 @@
+.signup__recaptcha-loader {
+    position: absolute;
+    left: 250px;
+    top: 20px;
+    z-index: -1;
+}

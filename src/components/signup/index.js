@@ -2,6 +2,8 @@ import { connect } from 'react-redux'
 import { signupRequest } from '../../actions/login'
 import Component from './component.jsx'
 
+const mapStateToProps = ({ user }) => ({ user });
+
 const mapDispatchToProps = (dispatch, ownProps) => {
     return {
         handleSubmitForm: (event) => {
@@ -11,14 +13,15 @@ const mapDispatchToProps = (dispatch, ownProps) => {
             dispatch(signupRequest({
                 email: data.get('email'),
                 password: data.get('password'),
-                confirmPassword: data.get('confirmPassword')
+                confirmPassword: data.get('confirmPassword'),
+                response: data.get('g-recaptcha-response')
             }))
         }
     }
 }
 
 const Login = connect(
-  null,
+  mapStateToProps,
   mapDispatchToProps
 )(Component)
 
