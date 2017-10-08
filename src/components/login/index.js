@@ -12,8 +12,7 @@ const mapDispatchToProps = (dispatch, ownProps) => {
 
             dispatch(loginRequest({
                 email: data.get('email'),
-                password: data.get('password'),
-                response: data.get('g-recaptcha-response')
+                password: data.get('password')
             }))
         }
     }

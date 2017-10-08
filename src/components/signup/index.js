@@ -14,7 +14,7 @@ const mapDispatchToProps = (dispatch, ownProps) => {
                 email: data.get('email'),
                 password: data.get('password'),
                 confirmPassword: data.get('confirmPassword'),
-                response: data.get('g-recaptcha-response')
+                recaptchaResponse: data.get('g-recaptcha-response')
             }))
         }
     }
