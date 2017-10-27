@@ -1,37 +1,23 @@
 import React from 'react';
 
 import Section from '../section';
+import Pulse from '../pulse';
 
 import './styles.css';
 
+const renderPulse = () => (
+    <Section>
+        <Pulse />
+    </Section>
+);
+
 export default (props) => (
     <div className="mdl-layout__tab-panel" id="overview">
-        <Section>
-            <header className="section__play-btn mdl-cell mdl-cell--3-col-desktop mdl-cell--2-col-tablet mdl-cell--4-col-phone mdl-color--teal-100 mdl-color-text--white">
-                <i className="material-icons">play_circle_filled</i>
-            </header>
-            <div className="mdl-card mdl-cell mdl-cell--9-col-desktop mdl-cell--6-col-tablet mdl-cell--4-col-phone">
-                <div className="mdl-card__supporting-text">
-                    <h4>Features</h4>
-                    Dolore ex deserunt aute fugiat aute nulla ea sunt aliqua nisi cupidatat eu. Nostrud in laboris labore nisi amet do dolor eu fugiat consectetur elit cillum esse.
-                </div>
-                <div className="mdl-card__actions">
-                    <a href="/" className="mdl-button">Read our features</a>
-                </div>
-            </div>
-            <button className="mdl-button mdl-js-button mdl-js-ripple-effect mdl-button--icon" id="btn1">
-                <i className="material-icons">more_vert</i>
-            </button>
-            <ul className="mdl-menu mdl-js-menu mdl-menu--bottom-right" htmlFor="btn1">
-                <li className="mdl-menu__item">Lorem</li>
-                <li className="mdl-menu__item" disabled>Ipsum</li>
-                <li className="mdl-menu__item">Dolor</li>
-            </ul>
-        </Section>
+        { props.user ? renderPulse() : null }
         <section className="section--center mdl-grid mdl-grid--no-spacing mdl-shadow--2dp">
             <div className="mdl-card mdl-cell mdl-cell--12-col">
                 <div className="mdl-card__supporting-text mdl-grid mdl-grid--no-spacing">
-                    <h4 className="mdl-cell mdl-cell--12-col">Details</h4>
+                    
                     <div className="section__circle-container mdl-cell mdl-cell--2-col mdl-cell--1-col-phone">
                         <div className="section__circle-container__circle mdl-color--primary"></div>
                     </div>

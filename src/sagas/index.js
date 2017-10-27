@@ -33,6 +33,10 @@ function* handleLoginRequest(action) {
     }
 }
 
+function* handleLoginSuccess(action) {
+    yield put(requestExpenses());
+}
+
 function* handleSignupRequest(action) {
     try {
         yield call(Api.signup, action.payload);
@@ -112,6 +116,7 @@ function* handleEditExpenseRequest({ payload }) {
 function* mySaga() {
     yield takeLatest('LOGIN_REQUEST', handleLoginRequest);
     yield takeLatest('LOGIN_FAILED', showErrors);
+    yield takeLatest('LOGIN_RESPONSE', handleLoginSuccess);
     yield takeLatest('SIGNUP_REQUEST', handleSignupRequest);
     yield takeLatest('SIGNUP_FAILED', showErrors);
     yield takeLatest('LOGOUT_REQUEST', handleLogoutRequest);
